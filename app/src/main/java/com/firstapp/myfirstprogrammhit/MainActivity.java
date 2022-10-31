@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     TextView result;
     String operator = null;
-    int num1 = 0, num2 = 0, res = 0;
+    double num1 = 0, num2 = 0, res = 0;
 
     boolean calculates = false;
 
@@ -22,18 +22,25 @@ public class MainActivity extends AppCompatActivity {
         result = findViewById(R.id.textView_res);
     }
 
+    public void setOperator(View view)
+    {
+        if(view instanceof Button)
+        {
+            Button b = (Button) view;
+            String str = b.getText().toString();
+            operator = str;
+
+            num1 = parseCurrentNumber(result);
+            res = num1;
+            result.setText("");
+        }
+    }
+
     public void buttonFunctionNumber(View view) {
         if (view instanceof Button) {
             Button b = (Button) view;
             String str = b.getText().toString();
 
-            if (str.equals("+")) {
-                operator = str;
-                num1 = parseCurrentNumber(result);
-                res = num1;
-                str = "";
-                result.setText("");
-            }
 
             if (str.equals("="))
             {
@@ -47,10 +54,41 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case "+":
                         res += num2;
-                        str = String.valueOf(res);
+                        str = Double.toString(res).replaceAll((String)"\\.0$", "");
                         result.setText("");
                         break;
 
+                    case "-":
+                        res -= num2;
+                        str = Double.toString(res).replaceAll((String)"\\.0$", "");
+                        result.setText("");
+                        break;
+
+                    case "X":
+                        res *= num2;
+                        str = Double.toString(res).replaceAll((String)"\\.0$", "");
+                        result.setText("");
+                        break;
+
+                    case "/":
+                        if(num2 == 0)
+                        {
+                            result.setText("Error");
+                            str = "";
+                        }
+                        else
+                        {
+                            res /= num2;
+                            str = Double.toString(res).replaceAll((String)"\\.0$", "");
+                            result.setText("");
+                        }
+                        break;
+
+//                    case "%":
+//                        res *= num2;
+//                        str = Double.toString(res).replaceAll((String)"\\.0$", "");
+//                        result.setText("");
+//                        break;
                 }
             }
 
@@ -83,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public int parseCurrentNumber(TextView result) {
-        int num = Integer.parseInt(result.getText().toString());
+    public double parseCurrentNumber(TextView result) {
+        double num = Double.parseDouble(result.getText().toString());
         return num;
     }
 }
