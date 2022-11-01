@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     TextView result;
-    String operator = null;
+    String operator = "";
     double num1 = 0, num2 = 0, res = 0;
 
     boolean calculates = false;
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         result = findViewById(R.id.textView_res);
     }
 
+    // parse arithmetic operator from the text input (+, -, *, /)
     public void setOperator(View view)
     {
         if(view instanceof Button)
@@ -83,12 +84,8 @@ public class MainActivity extends AppCompatActivity {
                             result.setText("");
                         }
                         break;
-
-//                    case "%":
-//                        res *= num2;
-//                        str = Double.toString(res).replaceAll((String)"\\.0$", "");
-//                        result.setText("");
-//                        break;
+                    default:
+                        result.setText("Something went wrong, try again");
                 }
             }
 
@@ -121,8 +118,62 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // as button "%" on the regular calculator
+    public void percentage(View view)
+    {
+        if(view instanceof Button)
+        {
+            if(operator.equals("+") || operator.equals("-"))
+            {
+                num2 = parseCurrentNumber(result);
+                num2 = (num1 * (num2 / 100));
+                result.setText(Double.toString(num2).replaceAll((String)"\\.0$", ""));
+            }
+            else if(operator.equals(""))
+            {
+                num1 = parseCurrentNumber(result);
+                num1 = num1/100;
+                result.setText(Double.toString(num1).replaceAll((String)"\\.0$", ""));
+            }
+            else
+            {
+                num2 = parseCurrentNumber(result);
+                num2 = num2/100;
+                result.setText(Double.toString(num2).replaceAll((String)"\\.0$", ""));
+            }
+
+        }
+    }
+
     public double parseCurrentNumber(TextView result) {
-        double num = Double.parseDouble(result.getText().toString());
-        return num;
+        try {
+            double num = Double.parseDouble(result.getText().toString());
+            return num;
+        }catch (NumberFormatException e)
+        {
+            result.setText("");
+            return 0;
+        }
+    }
+
+    // button +/-
+    public void swapPosNeg(View view)
+    {
+        if(view instanceof Button)
+        {
+            if(operator.equals(""))
+            {
+                num1 = parseCurrentNumber(result);
+                num1 = num1 * (-1);
+                result.setText(Double.toString(num1).replaceAll((String)"\\.0$", ""));
+            }
+            else
+            {
+                num2 = parseCurrentNumber(result);
+                num2 = num2 * (-1);
+                result.setText(Double.toString(num2).replaceAll((String)"\\.0$", ""));
+            }
+
+        }
     }
 }

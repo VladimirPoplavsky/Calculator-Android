@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="11"
-            android:onClick="setOperator"
+            android:onClick="percentage"
             android:text="%" />
 
         <Button
@@ -207,7 +207,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="11"
-            android:onClick="buttonFunctionNumber"
+            android:onClick="swapPosNeg"
             android:text="+/-" />
 
         <Button
