@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
             num1 = parseCurrentNumber(result);
             res = num1;
+            calculates = false;
             result.setText("");
         }
     }
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (str.equals("="))
             {
+                // if press "=" more than one time it repeat last operation with res and num2
                 if(!calculates)
                 {
                     num2 = parseCurrentNumber(result);
