@@ -92,12 +92,8 @@ public class MainActivity extends AppCompatActivity {
             //clean all from memory ('C' button)
             if (str.equals("c"))
             {
-                calculates = false;
+                initialize();
                 str = "";
-                num1 = 0;
-                num2 = 0;
-                res = 0;
-                result.setText("");
             }
 
             // backspace
@@ -175,5 +171,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void initialize()
+    {
+        calculates = false;
+        num1 = 0;
+        num2 = 0;
+        res = 0;
+        result.setText("");
     }
 }
