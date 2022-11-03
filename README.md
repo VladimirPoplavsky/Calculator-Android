@@ -13,5 +13,3 @@ Multiplication,
 Divide.
 
 Aslo has precent button, clean buffer, backspace
-
-simple basic disign
