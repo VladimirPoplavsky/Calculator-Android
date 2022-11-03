@@ -7,10 +7,10 @@ My first homework for the Android programming course
 ![image](https://user-images.githubusercontent.com/34675746/199797503-de84c1dd-5f20-4f26-ab11-87afa091cf9c.png)
 
 It can do basic math operations:
-Add 
-Subtract
-multiplication
-divide
+Add, 
+Subtract, 
+multiplication,
+divide.
 
 Aslo has precent button, clean buffer, backspace
 
